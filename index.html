@@ -328,6 +328,9 @@ body.editing #pn,body.editing #trail{display:none!important}
 /* Version 476: THE WORLD, 1970 at 35 per cent more contrast (about the plate's mean grey), before the printed look */
 .atlas-open[data-key="atlas70"] img{filter:brightness(.845) contrast(1.598) saturate(.78) sepia(.08) contrast(.95) blur(.25px)}
 #av[data-key="atlas70"] .av-port{filter:brightness(.845) contrast(1.598) saturate(.8) sepia(.07) contrast(.95) blur(.3px)}
+/* Version 477: THE WORLD'S OIL, 1970 at 10 per cent more contrast */
+.atlas-open[data-key="oil70"] img{filter:brightness(.936) contrast(1.175) saturate(.78) sepia(.08) contrast(.95) blur(.25px)}
+#av[data-key="oil70"] .av-port{filter:brightness(.936) contrast(1.175) saturate(.8) sepia(.07) contrast(.95) blur(.3px)}
 .atlas-open::before,.av-port::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='.5 0 0 0 .58 .5 0 0 0 .55 .5 0 0 0 .5 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='.4 0 0 0 .7 .4 0 0 0 .68 .4 0 0 0 .64 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");background-size:220px 220px,900px 900px;opacity:.6}
 .atlas-open::before{z-index:1;opacity:.2} .atlas-open::after{z-index:2}
