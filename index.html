@@ -325,6 +325,9 @@ body.editing #pn,body.editing #trail{display:none!important}
 /* Version 312: vintage plate. Warmer, flatter inks; paper grain multiplied over the map; slight ink softening in the viewer. */
 .atlas-open img{filter:saturate(.78) sepia(.08) contrast(.95) blur(.25px)}
 .av-port{filter:saturate(.8) sepia(.07) contrast(.95) blur(.3px)}
+/* Version 476: THE WORLD, 1970 at 35 per cent more contrast (about the plate's mean grey), before the printed look */
+.atlas-open[data-key="atlas70"] img{filter:brightness(.845) contrast(1.598) saturate(.78) sepia(.08) contrast(.95) blur(.25px)}
+#av[data-key="atlas70"] .av-port{filter:brightness(.845) contrast(1.598) saturate(.8) sepia(.07) contrast(.95) blur(.3px)}
 .atlas-open::before,.av-port::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='.5 0 0 0 .58 .5 0 0 0 .55 .5 0 0 0 .5 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='.4 0 0 0 .7 .4 0 0 0 .68 .4 0 0 0 .64 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");background-size:220px 220px,900px 900px;opacity:.6}
 .atlas-open::before{z-index:1;opacity:.2} .atlas-open::after{z-index:2}
@@ -851,7 +854,7 @@ function atlasPlate(wide){
   const m=DATA[current].meta; stack.innerHTML='';
   const s=document.createElement('section'); s.className=(wide?'page':'flow')+' atlas-sheet';
   s.innerHTML=`<div class="rh"><span class="l">ATLAS</span><span class="guide">${m.guide}</span><span class="r">${m.plate}</span></div>
-    <button class="atlas-open${m.baked?' baked':''}" type="button" aria-label="Explore the map at full size"><img alt="${esc(m.alt||('Political map of the world in '+m.year))}" width="${m.w}" height="${m.h}" decoding="sync" src="${IMGS[current+'_page']}"></button>
+    <button class="atlas-open${m.baked?' baked':''}" data-key="${current}" type="button" aria-label="Explore the map at full size"><img alt="${esc(m.alt||('Political map of the world in '+m.year))}" width="${m.w}" height="${m.h}" decoding="sync" src="${IMGS[current+'_page']}"></button>
     <p class="cap atlas-cap"><span class="fign">${m.platecap}.</span>—${m.cap}</p>`;
   stack.appendChild(s);
   const hint=document.createElement('p'); hint.className='atlas-hint';
@@ -892,7 +895,7 @@ function fit(){const r=rect(); S=minS=Math.min(r.width/IW,r.height/IH); TX=(r.wi
 function zoomAt(f,cx,cy){const ns=Math.max(minS,Math.min(maxS,S*f)),k=ns/S; TX=cx-(cx-TX)*k; TY=cy-(cy-TY)*k; S=ns; clampPan(); apply()}
 function openAtlas(key){
   key=key||current; AT=TILES[key]; IW=AT.W0; IH=AT.H0; TS=AT.size;
-  av.classList.toggle('baked', !!(DATA[key]&&DATA[key].meta&&DATA[key].meta.baked));
+  av.classList.toggle('baked', !!(DATA[key]&&DATA[key].meta&&DATA[key].meta.baked)); av.dataset.key=key;
   maxS= window.innerWidth<840 ? 1 : 1.3;
   abase.src=IMGS[key+'_page']||IMGS[key]; abase.style.width=IW+'px'; abase.style.height=IH+'px';
   av.showModal(); fit();
