@@ -340,6 +340,9 @@ body.editing #pn,body.editing #trail{display:none!important}
 /* Version 383: a plate whose printed look is in the image itself (meta.baked) is shown as it is */
 .atlas-open.baked img{filter:none} .atlas-open.baked::before,.page.atlas-sheet .atlas-open.baked::after{display:none}
 #av.baked .av-port{filter:none} #av.baked .av-port::after{display:none}
+/* Version 557: the five article map plates carry their paper and inks in the image; in the viewer they are shown as on the page, without the grain that deepens with zoom */
+#av[data-key="gjp1"] .av-port,#av[data-key="gsp1"] .av-port,#av[data-key="afp1"] .av-port,#av[data-key="gmp1"] .av-port,#av[data-key="dep1"] .av-port{filter:saturate(.88) sepia(.08) contrast(.97)}
+#av[data-key="gjp1"] .av-port::after,#av[data-key="gsp1"] .av-port::after,#av[data-key="afp1"] .av-port::after,#av[data-key="gmp1"] .av-port::after,#av[data-key="dep1"] .av-port::after{display:none}
 </style>
 </head>
 <body>
